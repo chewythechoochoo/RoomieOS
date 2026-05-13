@@ -1,0 +1,415 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant night (&:is(.night *));
+
+:root {
+  /* Day theme — warm scrapbook cream */
+  --background: oklch(0.97 0.025 85);
+  --foreground: oklch(0.23 0.04 285); /* ink */
+  --card: oklch(0.99 0.015 85);
+  --card-foreground: oklch(0.23 0.04 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.23 0.04 285);
+  --primary: oklch(0.62 0.21 260); /* iMessage blue */
+  --primary-foreground: oklch(0.99 0.01 85);
+  --secondary: oklch(0.95 0.02 90);
+  --secondary-foreground: oklch(0.23 0.04 285);
+  --muted: oklch(0.94 0.015 85);
+  --muted-foreground: oklch(0.45 0.03 285);
+  --accent: oklch(0.88 0.08 165);
+  --accent-foreground: oklch(0.23 0.04 285);
+  --destructive: oklch(0.7 0.18 25);
+  --destructive-foreground: oklch(0.99 0.01 85);
+  --border: oklch(0.85 0.03 285 / 0.5);
+  --input: oklch(0.95 0.01 90);
+  --ring: oklch(0.62 0.21 260);
+
+  /* Named scrapbook palette (from roomieos) */
+  --cream: #FBF3DE;
+  --cream-deep: #F4E9C9;
+  --paper: #FFFCF1;
+  --butter: #FFE38A;
+  --peach: #FFC9A8;
+  --peach-deep: #F8A382;
+  --mint: #C1E8C8;
+  --mint-deep: #9CD4B0;
+  --lavender: #DCC8F5;
+  --sky: #BDDEFF;
+  --sky-deep: #7FB7F2;
+  --imessage: #0A84FF;
+  --imessage-soft: #D6E9FF;
+  --ink: #2A2440;
+  --pencil: #5B5570;
+  --coral: #FF9F8D;
+  --rose: #FFB6C1;
+  --dusk: #2B254A;
+  --dusk-deep: #1B1635;
+
+  --radius: 1rem;
+}
+
+.night {
+  --background: oklch(0.2 0.04 285);
+  --foreground: oklch(0.92 0.04 90);
+  --card: oklch(0.28 0.05 285);
+  --card-foreground: oklch(0.92 0.04 90);
+  --primary: oklch(0.72 0.18 250);
+  --primary-foreground: oklch(0.2 0.04 285);
+  --secondary: oklch(0.32 0.05 285);
+  --secondary-foreground: oklch(0.92 0.04 90);
+  --muted: oklch(0.3 0.04 285);
+  --muted-foreground: oklch(0.75 0.04 90);
+  --border: oklch(0.92 0.04 90 / 0.25);
+}
+
+@theme inline {
+  --font-sans: 'Gaegu', 'Patrick Hand', 'Comic Sans MS', cursive;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-paper: var(--paper);
+  --color-butter: var(--butter);
+  --color-peach: var(--peach);
+  --color-peach-deep: var(--peach-deep);
+  --color-mint: var(--mint);
+  --color-mint-deep: var(--mint-deep);
+  --color-lavender: var(--lavender);
+  --color-sky: var(--sky);
+  --color-sky-deep: var(--sky-deep);
+  --color-imessage: var(--imessage);
+  --color-imessage-soft: var(--imessage-soft);
+  --color-ink: var(--ink);
+  --color-pencil: var(--pencil);
+  --color-coral: var(--coral);
+  --color-rose: var(--rose);
+  --color-dusk: var(--dusk);
+  --color-dusk-deep: var(--dusk-deep);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html, body {
+    font-family: 'Gaegu', 'Patrick Hand', cursive;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: #FBF3DE;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255, 227, 138, 0.35), transparent 35%),
+      radial-gradient(circle at 88% 30%, rgba(220, 200, 245, 0.30), transparent 40%),
+      radial-gradient(circle at 70% 80%, rgba(193, 232, 200, 0.25), transparent 40%),
+      radial-gradient(circle at 20% 90%, rgba(255, 201, 168, 0.30), transparent 40%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.30 0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-attachment: fixed;
+    background-size: auto, auto, auto, auto, 240px 240px;
+    min-height: 100vh;
+  }
+  body.night {
+    background-color: #1B1635;
+    color: #F4E9C9;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255, 227, 138, 0.16), transparent 38%),
+      radial-gradient(circle at 88% 30%, rgba(220, 200, 245, 0.20), transparent 42%),
+      radial-gradient(circle at 70% 80%, rgba(125, 183, 242, 0.18), transparent 42%),
+      radial-gradient(circle at 20% 90%, rgba(255, 201, 168, 0.14), transparent 42%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.80 0 0 0 0 1 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+@layer utilities {
+  /* Paper-y card surfaces */
+  .shadow-paper {
+    box-shadow:
+      0 1px 0 rgba(42, 36, 64, 0.05),
+      0 4px 12px rgba(42, 36, 64, 0.07),
+      0 14px 28px -10px rgba(42, 36, 64, 0.12);
+  }
+  .shadow-sticker {
+    box-shadow:
+      0 2px 0 rgba(42, 36, 64, 0.06),
+      0 8px 18px -6px rgba(42, 36, 64, 0.18);
+  }
+  .shadow-sticker-lg {
+    box-shadow:
+      0 2px 0 rgba(42, 36, 64, 0.08),
+      0 16px 28px -10px rgba(42, 36, 64, 0.22),
+      0 30px 60px -20px rgba(42, 36, 64, 0.15);
+  }
+  .ink-stroke { stroke: #2A2440; }
+  .ink-text { color: #2A2440; }
+  .pencil-text { color: #5B5570; }
+
+  .paper-card {
+    background: #FFFCF1;
+    border: 2px solid #2A2440;
+    border-radius: 22px;
+    position: relative;
+  }
+  .paper-card-soft {
+    background: #FFFCF1;
+    border: 1.5px solid rgba(42, 36, 64, 0.85);
+    border-radius: 24px;
+  }
+
+  /* Tape decoration */
+  .tape {
+    position: absolute;
+    width: 64px;
+    height: 22px;
+    background: rgba(255, 227, 138, 0.7);
+    border: 1px dashed rgba(42, 36, 64, 0.25);
+    border-radius: 2px;
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px) rotate(var(--reveal-rot, 0deg));
+    transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--reveal-rot, 0deg));
+  }
+
+  /* Scribble underline — preserveAspectRatio=none stretches the squiggle to match
+     the text width exactly, so it never falls short or overruns the word. */
+  .scribble-underline {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'><path d='M2 9 C 40 1, 80 13, 120 7 S 200 1, 238 9' fill='none' stroke='%230A84FF' stroke-width='3' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 100% 0.35em;
+    padding-bottom: 0.15em;
+  }
+  .night .scribble-underline {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 14' preserveAspectRatio='none'><path d='M2 9 C 40 1, 80 13, 120 7 S 200 1, 238 9' fill='none' stroke='%23BDDEFF' stroke-width='3' stroke-linecap='round'/></svg>");
+  }
+
+  /* Hand-drawn underline */
+  .hand-underline {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0 8 Q25 2, 50 8 T100 8' stroke='%230A84FF' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 6px;
+    padding-bottom: 5px;
+  }
+
+  /* Night overrides for paper cards */
+  .night .paper-card,
+  .night .paper-card-soft {
+    background: #322B55;
+    border-color: #F4E9C9;
+    color: #F4E9C9;
+  }
+  .night .ink-stroke { stroke: #F4E9C9; }
+  .night .ink-text { color: #F4E9C9; }
+  .night .pencil-text { color: #C9C2E0; }
+  .night .tape {
+    background: rgba(220, 200, 245, 0.35);
+    border-color: rgba(244, 233, 201, 0.4);
+  }
+
+  /* Night mode: sticky notes with light pastel backgrounds keep dark text.
+     Targets any element with a light pastel bg utility, or an inline `style`
+     containing background — these surfaces stay colorful in night mode,
+     so their text must stay dark for contrast. */
+  .night :is(.bg-butter, .bg-peach, .bg-mint, .bg-lavender, .bg-sky, .bg-cream, .bg-imessage-soft, .bg-paper, .bg-rose) {
+    color: #2A2440;
+    border-color: rgba(42, 36, 64, 0.85);
+  }
+  /* When paper-card-soft also has a pastel utility, restore the pastel bg
+     (otherwise paper-card-soft's dark night bg wins → dark-on-dark). */
+  .night .paper-card-soft.bg-butter { background: #FFE38A; }
+  .night .paper-card-soft.bg-peach { background: #FFC9A8; }
+  .night .paper-card-soft.bg-mint { background: #C1E8C8; }
+  .night .paper-card-soft.bg-lavender { background: #DCC8F5; }
+  .night .paper-card-soft.bg-sky { background: #BDDEFF; }
+  .night .paper-card-soft.bg-cream { background: #FBF3DE; }
+  .night .paper-card-soft.bg-imessage-soft { background: #D6E9FF; }
+  .night .paper-card-soft.bg-rose { background: #FFB6C1; }
+  .night :is(.bg-butter, .bg-peach, .bg-mint, .bg-lavender, .bg-sky, .bg-cream, .bg-imessage-soft, .bg-paper, .bg-rose) .ink-text {
+    color: #2A2440;
+  }
+  .night :is(.bg-butter, .bg-peach, .bg-mint, .bg-lavender, .bg-sky, .bg-cream, .bg-imessage-soft, .bg-paper, .bg-rose) .pencil-text {
+    color: #5B5570;
+  }
+  .night :is(.bg-butter, .bg-peach, .bg-mint, .bg-lavender, .bg-sky, .bg-cream, .bg-imessage-soft, .bg-paper, .bg-rose) .ink-stroke {
+    stroke: #2A2440;
+  }
+  /* Paper-card-soft cards with an inline `background:` style keep their explicit
+     pastel surface and dark text in night mode. */
+  .night .paper-card-soft[style*="background"] {
+    color: #2A2440;
+    border-color: rgba(42, 36, 64, 0.85);
+  }
+  .night .paper-card-soft[style*="background"] .ink-text {
+    color: #2A2440;
+  }
+  .night .paper-card-soft[style*="background"] .pencil-text {
+    color: #5B5570;
+  }
+  .night .paper-card-soft[style*="background"] .ink-stroke {
+    stroke: #2A2440;
+  }
+
+  /* Sticker button */
+  .sticker-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    font-family: 'Gaegu', cursive;
+    font-weight: 700;
+    font-size: 1.25rem;
+    border-radius: 999px;
+    border: 2px solid #2A2440;
+    background: #0A84FF;
+    color: #FFFCF1;
+    box-shadow:
+      0 3px 0 rgba(42, 36, 64, 0.6),
+      0 10px 22px -8px rgba(10, 132, 255, 0.45);
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .sticker-btn:hover {
+    transform: translateY(-2px) rotate(-1deg);
+    box-shadow:
+      0 5px 0 rgba(42, 36, 64, 0.6),
+      0 14px 28px -8px rgba(10, 132, 255, 0.55);
+  }
+  .sticker-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 rgba(42, 36, 64, 0.6);
+  }
+  .sticker-btn-cream {
+    background: #FFFCF1;
+    color: #2A2440;
+  }
+  .sticker-btn-cream:hover {
+    transform: translateY(-2px) rotate(1deg);
+  }
+  .night .sticker-btn-cream {
+    background: #FFE38A;
+    color: #2A2440;
+  }
+
+  /* Sketchy border */
+  .sketchy-border {
+    border: 2px solid currentColor;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  }
+
+  /* Dotted divider */
+  .dotted-rule {
+    background-image: radial-gradient(circle, currentColor 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+    background-repeat: repeat-x;
+    background-position: center;
+    height: 12px;
+    color: rgba(42, 36, 64, 0.4);
+  }
+  .night .dotted-rule { color: rgba(244, 233, 201, 0.45); }
+
+  /* Paper noise overlay */
+  .paper-texture {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
+    opacity: 0.04;
+  }
+}
+
+/* Selection */
+::selection {
+  background: #FFE38A;
+  color: #2A2440;
+}
+.night ::selection {
+  background: #BDDEFF;
+  color: #1B1635;
+}
+
+/* ───────── Animations ───────── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float-y-2 {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+@keyframes wiggle-soft {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50% { transform: rotate(1.5deg); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg) translateY(0); }
+  50% { transform: rotate(4deg) translateY(-4px); }
+}
+@keyframes sparkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+  50% { transform: scale(1.25) rotate(180deg); opacity: 1; }
+}
+@keyframes pop-in {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float-y { animation: float-y 4s ease-in-out infinite; }
+.animate-float-y-slow { animation: float-y 6s ease-in-out infinite; }
+.animate-float-y-2 { animation: float-y-2 5s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 2.5s ease-in-out infinite; }
+.animate-wiggle-soft { animation: wiggle-soft 4s ease-in-out infinite; }
+.animate-sway { animation: sway 7s ease-in-out infinite; }
+.animate-sparkle { animation: sparkle 3s ease-in-out infinite; }
+.animate-pop-in { animation: pop-in 0.5s ease-out forwards; opacity: 0; }
+.animate-bounce-soft { animation: bounce-soft 2s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.6s ease-out forwards; opacity: 0; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
