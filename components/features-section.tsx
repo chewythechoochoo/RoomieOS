@@ -386,7 +386,7 @@ function FeatureF() {
 
         <div className="relative">
           <div className="reveal relative max-w-md mx-auto h-[600px] flex items-center justify-center">
-            <Pencil className="absolute top-10 -left-4 w-14 ink-stroke text-ink rotate-[-14deg] animate-wiggle-soft" fillClass="fill-coral" />
+            <Pencil className="absolute top-10 -right-4 w-14 ink-stroke text-ink rotate-[14deg] animate-wiggle-soft" fillClass="fill-coral" />
             <StickyNote className="absolute bottom-4 -left-6 w-16 ink-stroke text-ink rotate-[-12deg] animate-float-y" fillClass="fill-mint" />
             <Sparkle className="absolute top-32 -left-2 w-6 text-imessage animate-sparkle" />
             <PhoneFrame width={240} tilt={4}>
