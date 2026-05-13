@@ -27,13 +27,32 @@ import { useReveal } from "@/hooks/use-reveal";
 export function CTASection() {
   const ref = useReveal(0.1);
   const [email, setEmail] = useState("");
+  const [hp, setHp] = useState(""); // honeypot, must stay empty for real humans
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    // Placeholder — wire this up to a real backend / form service later.
-    setSubmitted(true);
+    if (!email.trim() || submitting) return;
+    setSubmitting(true);
+    setErrorMsg(null);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, hp }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || "something went wrong");
+      }
+      setSubmitted(true);
+    } catch {
+      setErrorMsg("hmm, that didn't go through. mind trying again?");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -86,20 +105,32 @@ export function CTASection() {
                   <input
                     type="email"
                     required
+                    disabled={submitting}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your email"
-                    className="flex-1 paper-card-soft px-4 py-3 text-lg font-bold ink-text placeholder:pencil-text placeholder:font-normal placeholder:italic focus:outline-none focus:ring-2 focus:ring-imessage/50"
+                    className="flex-1 paper-card-soft px-4 py-3 text-lg font-bold ink-text placeholder:pencil-text placeholder:font-normal placeholder:italic focus:outline-none focus:ring-2 focus:ring-imessage/50 disabled:opacity-60"
                     style={{ background: '#FFFCF1' }}
                   />
-                  <button type="submit" className="sticker-btn shrink-0">
-                    <span>Join the Waitlist</span>
+                  {/* honeypot: real users never see/fill this; bots usually do */}
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    value={hp}
+                    onChange={(e) => setHp(e.target.value)}
+                    style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0, pointerEvents: 'none' }}
+                  />
+                  <button type="submit" disabled={submitting} className="sticker-btn shrink-0 disabled:opacity-70 disabled:cursor-wait">
+                    <span>{submitting ? "Joining…" : "Join the Waitlist"}</span>
                     <Sparkle className="w-5 ink-stroke text-white" />
                   </button>
                 </form>
               )}
               <div className="mt-3 text-sm pencil-text italic">
-                no spam, just a friendly note when we&apos;re ready.
+                {errorMsg ? errorMsg : "no spam, just a friendly note when we're ready."}
               </div>
             </div>
 
