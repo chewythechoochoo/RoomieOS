@@ -4,7 +4,7 @@ import { PhoneFrame, InboxScreen, ExpensesScreen, ChatThreadScreen, ComposerScre
 import {
   Sparkle, Star, CrayonArrow, DownArrow, Squiggle, DashLine,
   CoffeeMug, Plant, StickyNote, Receipt, Mailbox, FridgeNote, Coin,
-  Broom, Pencil, House, SunDoodle, MoonDoodle,
+  Broom, House, SunDoodle, MoonDoodle,
 } from "./doodles";
 import { useReveal } from "@/hooks/use-reveal";
 
@@ -386,7 +386,6 @@ function FeatureF() {
 
         <div className="relative">
           <div className="reveal relative max-w-md mx-auto h-[600px] flex items-center justify-center">
-            <Pencil className="absolute top-10 right-12 w-14 ink-stroke text-ink rotate-[10deg] animate-wiggle-soft" fillClass="fill-coral" />
             <StickyNote className="absolute bottom-4 -left-6 w-16 ink-stroke text-ink rotate-[-12deg] animate-float-y" fillClass="fill-mint" />
             <Sparkle className="absolute top-12 -left-2 w-6 text-imessage animate-sparkle" />
             <PhoneFrame width={240} tilt={4}>
