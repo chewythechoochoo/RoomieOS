@@ -21,8 +21,8 @@ export function HeroSection() {
       {/* Background drifting doodles */}
       <Cloud className="absolute top-20 left-[8%] w-24 ink-stroke text-white animate-float-y" data-parallax="1.4" fillClass="fill-white/80" />
       <Cloud className="absolute top-36 right-[12%] w-32 ink-stroke text-white animate-float-y-slow" data-parallax="1.8" fillClass="fill-white/70" />
-      <SunDoodle className="absolute top-24 right-[6%] w-16 ink-stroke animate-sparkle night:hidden" data-parallax="2" />
-      <MoonDoodle className="absolute top-24 right-[6%] w-16 ink-stroke animate-sparkle hidden night:block" data-parallax="2" />
+      <SunDoodle className="absolute top-24 right-[6%] w-16 ink-stroke night:hidden" data-parallax="2" />
+      <MoonDoodle className="absolute top-24 right-[6%] w-16 ink-stroke hidden night:block" data-parallax="2" />
       <Sparkle className="absolute top-40 left-[18%] w-7 text-coral animate-sparkle" />
       <Sparkle className="absolute top-[28%] right-[24%] w-5 text-imessage animate-sparkle" style={{ animationDelay: '0.6s' }} />
       <Star className="absolute top-[60%] left-[6%] w-7 text-imessage animate-wiggle-soft" />
