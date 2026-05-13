@@ -3,7 +3,7 @@
 import { PhoneFrame, ChatThreadScreen } from "./phone-frame";
 import {
   Sparkle, Heart, Star,
-  CoffeeMug, Plant, Receipt, Key, Cloud, SunDoodle,
+  CoffeeMug, Plant, Receipt, Cloud, SunDoodle,
   RoommateA, RoommateB, RoommateC,
 } from "./doodles";
 import { useReveal, useParallax } from "@/hooks/use-reveal";
@@ -68,7 +68,7 @@ export function HeroSection() {
         {/* — Right: phone + collage — */}
         <div className="relative h-[520px] sm:h-[600px] lg:h-[680px] flex items-center justify-center">
           {/* sticky note behind */}
-          <div className="absolute top-4 left-2 sm:left-6 w-32 h-32 rotate-[-8deg] paper-card-soft shadow-sticker flex flex-col items-center justify-center text-center p-2 animate-wiggle-soft" style={{ background: '#FFE38A' }}>
+          <div className="absolute top-4 -left-2 sm:-left-6 w-32 h-32 rotate-[-8deg] paper-card-soft shadow-sticker flex flex-col items-center justify-center text-center p-2 animate-wiggle-soft" style={{ background: '#FFE38A' }}>
             <div className="tape -top-3 left-1/2 -translate-x-1/2 rotate-[-4deg]" style={{ background: 'rgba(255, 252, 241, 0.85)' }} />
             <div className="text-lg ink-text font-bold leading-tight">today's<br />chore</div>
             <div className="text-sm pencil-text mt-1">sweep!</div>
@@ -87,7 +87,6 @@ export function HeroSection() {
 
           <CoffeeMug className="absolute bottom-6 left-0 w-20 sm:w-24 ink-stroke text-ink rotate-[-6deg] animate-float-y-slow" fillClass="fill-mint" data-parallax="1.5" />
           <Plant className="absolute bottom-0 right-0 w-24 sm:w-32 ink-stroke text-ink rotate-[5deg] animate-sway" fillClass="fill-mint" data-parallax="1.0" />
-          <Key className="absolute top-1/2 -right-2 w-20 ink-stroke text-ink rotate-[-20deg] animate-float-y" data-parallax="1.3" />
 
 
           <div className="absolute -bottom-2 right-12 flex -space-x-2">
